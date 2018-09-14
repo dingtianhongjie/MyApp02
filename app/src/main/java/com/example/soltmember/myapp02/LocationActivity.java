@@ -105,19 +105,21 @@ public class LocationActivity extends AppCompatActivity implements LocationListe
         final TextView textKeido = (TextView)findViewById(R.id.textKeido);
         Button buttonGet = (Button)findViewById(R.id.buttonGet);
 
-        final double ido = location.getLatitude();
-        final double keido = location.getLongitude();
+        double ido = location.getLatitude();
+        double keido = location.getLongitude();
+        
+        int intIdo = (int)(ido);
+        int intKeido = (int)(keido);
 
-//      計算するときに使う
-//        int intIdo = (int)(ido * 10000);
-//        int intKeido = (int)(keido * 10000);
+        final int paramIdo = (int)((ido - intIdo) * 10000);
+        final int paramKeido = (int)((keido - intKeido) * 10000);
 
         buttonGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Stringで動作確認
-                String stIdo = String.valueOf(ido * 10000);
-                String stKeido = String.valueOf(keido * 10000);
+                String stIdo = String.valueOf(paramIdo);
+                String stKeido = String.valueOf(paramKeido);
 
                 textIdo.setText(stIdo);
                 textKeido.setText(stKeido);
